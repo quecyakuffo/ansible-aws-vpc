@@ -152,3 +152,33 @@
         - "Public Route Table ID: {{ pubRT_out.route_table.id }}"
         - "NAT Gateway ID: {{ NATGW_out.nat_gateway_id }}"
         - "Private Route Table ID: {{ privRT_out.route_table.id }}"
+    - name: Set facts for created resource IDs
+      set_fact:
+        vpcid: "{{ vpcout.vpc.id }}"
+        pubsub1_id: "{{ pubsub1_out.subnet.id }}"
+        pubsub2_id: "{{ pubsub2_out.subnet.id }}"
+        pubsub3_id: "{{ pubsub3_out.subnet.id }}"
+        privsub1_id: "{{ privsub1_out.subnet.id }}"
+        privsub2_id: "{{ privsub2_out.subnet.id }}"
+        privsub3_id: "{{ privsub3_out.subnet.id }}"
+        igw_id: "{{ igw_out.gateway_id }}"
+        pubrt_id: "{{ pubRT_out.route_table.id }}"
+        natgw_id: "{{ NATGW_out.nat_gateway_id }}"
+        privrt_id: "{{ privRT_out.route_table.id }}"
+        cacheable: true
+
+    - name: Create variable file for VPC output
+      copy:
+        dest: vars/output_vars
+        content: |
+          vpcid: "{{ vpcid }}"
+          pubsub1_id: "{{ pubsub1_id }}"
+          pubsub2_id: "{{ pubsub2_id }}"
+          pubsub3_id: "{{ pubsub3_id }}"
+          privsub1_id: "{{ privsub1_id }}"
+          privsub2_id: "{{ privsub2_id }}"
+          privsub3_id: "{{ privsub3_id }}"
+          igw_id: "{{ igw_id }}"
+          pubrt_id: "{{ pubrt_id }}"
+          natgw_id: "{{ natgw_id }}"
+          privrt_id: "{{ privrt_id }}"
