@@ -136,3 +136,19 @@
           - dest: 0.0.0.0/0
             nat_gateway_id: "{{ NATGW_out.nat_gateway_id }}"
       register: privRT_out
+
+    - name: Display created resource IDs
+      debug:
+        msg: "{{ item }}"
+      loop:
+        - "VPC ID: {{ vpcout.vpc.id }}"
+        - "Public Subnet 1 ID: {{ pubsub1_out.subnet.id }}"
+        - "Public Subnet 2 ID: {{ pubsub2_out.subnet.id }}"
+        - "Public Subnet 3 ID: {{ pubsub3_out.subnet.id }}"
+        - "Private Subnet 1 ID: {{ privsub1_out.subnet.id }}"
+        - "Private Subnet 2 ID: {{ privsub2_out.subnet.id }}"
+        - "Private Subnet 3 ID: {{ privsub3_out.subnet.id }}"
+        - "Internet Gateway ID: {{ igw_out.gateway_id }}"
+        - "Public Route Table ID: {{ pubRT_out.route_table.id }}"
+        - "NAT Gateway ID: {{ NATGW_out.nat_gateway_id }}"
+        - "Private Route Table ID: {{ privRT_out.route_table.id }}"
