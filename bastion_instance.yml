@@ -44,8 +44,9 @@
         instance_type: t2.micro
         image_id: "{{ bastion_ami }}"
         vpc_subnet_id: "{{ pubsub1_id }}"
-        assign_public_ip: yes
         security_group: Bastion-host-sg
+        network:
+          assign_public_ip: true
         state: running
         wait: yes
         wait_timeout: 300
