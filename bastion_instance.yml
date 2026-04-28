@@ -26,7 +26,7 @@
     - name: Create Sec Grp for bastion host
       ec2_group:
         name: Bastion-host-sg
-        description: Allow SSH from my IP address
+        description: Allow port 22 from everywhere and all port within sg
         region: "{{ region }}"
         vpc_id: "{{ vpcid }}"
         rules:
