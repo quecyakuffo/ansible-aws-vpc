@@ -182,5 +182,3 @@
           pubrt_id: "{{ pubrt_id }}"
           natgw_id: "{{ natgw_id }}"
           privrt_id: "{{ privrt_id }}"
-          
-        
