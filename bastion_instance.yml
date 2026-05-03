@@ -56,9 +56,22 @@
           Owner: Devops Team
       register: bastionHost_out
 
+    - name: Set bastion host instance fact
+      set_fact:
+        bastion_instance: "{{ bastionHost_out.instances[0] }}"
+
+    - name: Ensure bastion host has a public IP
+      fail:
+        msg: >-
+          Bastion instance {{ bastion_instance.instance_id }} does not have a public IP.
+          AWS only assigns automatic public IPs when an instance is created, so Ansible
+          cannot add one to this existing instance. Terminate the existing Bastion_host
+          instance and rerun this playbook, or associate an Elastic IP with the instance.
+      when: bastion_instance.public_ip_address is not defined
+
     - name: Display bastion host details
       debug:
         msg:
-          - "Bastion Instance ID: {{ bastionHost_out.instances[0].instance_id }}"
-          - "Bastion Public IP: {{ bastionHost_out.instances[0].public_ip_address }}"
-          - "Bastion Public DNS: {{ bastionHost_out.instances[0].public_dns_name }}"
+          - "Bastion Instance ID: {{ bastion_instance.instance_id }}"
+          - "Bastion Public IP: {{ bastion_instance.public_ip_address }}"
+          - "Bastion Public DNS: {{ bastion_instance.public_dns_name | default('not assigned') }}"
