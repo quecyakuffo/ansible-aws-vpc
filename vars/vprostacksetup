@@ -1,0 +1,4 @@
+nginx_ami: ami-018d49b53eee64386
+tomcat_ami: ami-018d49b53eee64386
+rabbitmq_ami: ami-018d49b53eee64386
+mysql_ami: ami-018d49b53eee64386

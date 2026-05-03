@@ -169,8 +169,9 @@
 
     - name: Create variable file for VPC output
       copy:
-        dest: vars/output_vars
+        dest: vars/vpc_output_vars
         content: |
+          region: "{{ region }}"
           vpcid: "{{ vpcid }}"
           pubsub1_id: "{{ pubsub1_id }}"
           pubsub2_id: "{{ pubsub2_id }}"
